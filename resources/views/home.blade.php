@@ -14,7 +14,15 @@
                         </div>
                     @endif
 
+
+                    {{-- @if(session('error'))
+                        <div class="alert alert-danger">
+                            {{ session('error') }}
+                        </div>
+                    @endif --}}
+
                     {{ __('You are logged in!') }}
+
                 </div>
             </div>
         </div>

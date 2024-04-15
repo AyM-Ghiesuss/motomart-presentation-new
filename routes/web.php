@@ -2,6 +2,11 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Laravel\Socialite\Facades\Socialite;
+use App\Http\Controllers\GoogleAuthController;
+use App\Http\Controllers\frontend\MapController;
+use App\Http\Controllers\Frontend\PrivacyPolicy;
+use App\Http\Controllers\Auth\ProviderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,13 +23,21 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Auth::routes();
+
+//Authentication Routes
+Route::get('/auth/{provider}/redirect',[ProviderController::class,'redirect']);
+Route::get('/auth/{provider}/callback', [ProviderController::class, 'callback']);
 
 
-Route::get('/email/verify', function () {
-    return view('auth.verify-email');
-})->middleware('auth')->name('verification.notice');
+Auth::routes([
+    'verify' => true
+]);
 
+
+Route::get('/home',[App\Http\Controllers\HomeController::class, 'index' ])->name('home')->middleware('verified');
+
+
+Route::get('/privacy-policy', [App\Http\Controllers\Frontend\PrivacyPolicy::class, 'index']);
 
 
 // Landing Page
@@ -175,9 +188,23 @@ Route::prefix('sellercenter')->middleware(['auth','isSeller'])->group(function()
         Route::get('/invoice/{orderId}/generate', 'generateInvoice');
 
         Route::get('/invoice/{orderId}/mail', 'mailInvoice');
-
-
     });
+
+
+    // For payment config
+    //Route::resource('payment-methods', 'App\Http\Controllers\SellingCenter\PaymentMethodsController')->only(['index', 'create', 'store', 'update']);
+
+    // Route::controller(App\Http\Controllers\SellingCenter\PaymentMethodsController::class)->group(function () {
+    //     Route::get('/payment-methods', 'index');
+    //     Route::get('/payment-methods/create', 'create');
+    //     Route::post('/payment-methods', 'update');
+    // });
+
+    Route::get('payment-methods',[App\Http\Controllers\SellingCenter\PaymentMethodsController::class, 'index']);
+    Route::post('payment-methods',[App\Http\Controllers\SellingCenter\PaymentMethodsController::class, 'store']);
+
+    Route::get('gcash-payment-methods',[App\Http\Controllers\SellingCenter\GcashPaymentMethodsController::class, 'index']);
+    Route::post('gcash-payment-methods',[App\Http\Controllers\SellingCenter\GcashPaymentMethodsController::class, 'store']);
 
 
 

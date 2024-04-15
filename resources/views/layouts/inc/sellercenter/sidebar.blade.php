@@ -23,7 +23,7 @@
             <li class="nav-item"> <a class="nav-link" href="{{ url('sellercenter/products') }}">View product</a></li>
           </ul>
         </div>
-      </li>
+     </li>
 
 
 
@@ -33,6 +33,23 @@
           <span class="menu-title">Orders</span>
         </a>
       </li>
+
+
+
+      <li class="nav-item">
+        <a class="nav-link" data-bs-toggle="collapse" href="#paymentmethods" aria-expanded="false" aria-controls="ui-basic">
+          <i class="mdi mdi-sale menu-icon"></i>
+          <span class="menu-title">Payment Methods</span>
+          <i class="menu-arrow"></i>
+        </a>
+        <div class="collapse" id="paymentmethods">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item"> <a class="nav-link" href="{{ url('sellercenter/payment-methods') }}">PayPal</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{ url('sellercenter/gcash-payment-methods') }}">Gcash (PayMongo)</a></li>
+            <li class="nav-item"> <a class="nav-link" href="#">PayMaya </a></li>
+          </ul>
+        </div>
+     </li>
 
 
       {{-- <li class="nav-item">

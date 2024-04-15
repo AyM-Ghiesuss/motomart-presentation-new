@@ -10,7 +10,7 @@
          @include('auth.modal-register')
     @endif</div>
 
-<nav class="navbar navbar-expand-lg bg-white sticky-top">
+<nav class="navbar navbar-expand-lg bg-light sticky-top">
     <div class="container-fluid  mx-lg-4  mx-sm-0">
         <a href="{{ url('/') }}" class="navbar-brand">
             <img src="{{asset('assets/images/newlogomotomart.png')}}" alt="Motomart Logo" class="img-fluid" width="150" height="25">
@@ -19,12 +19,13 @@
         <span class="fa fa-bars border border-color-black p-2  rounded-2"></span>
         </button>
         <div class="collapse navbar-collapse justify-content-end" id="navbar-toggle">
-        <form class="d-flex me-lg-5 me-md-0" role="search" action="{{ url('search') }}" method="GET">
-            <div class="input-group">
-                <input class="form-control" name="search" value="{{ Request::get('search') }}" placeholder="Search" aria-label="Search">
-                <button class="btn bg-danger" type="submit"><i class="fa fa-search"></i></button>
-            </div>
-        </form>
+            <form class="d-flex me-lg-5 me-md-0" role="search" action="{{ url('search') }}" method="GET">
+                <div class="input-group">
+                    <input class="form-control" style="border-radius: 20px;" name="search" value="{{ Request::get('search') }}" placeholder="Search" aria-label="Search">
+                    <button class="btn" type="submit"></button>
+                </div>
+            </form>
+
         <ul class="navbar-nav">
             <li class="nav-item">
             <a href="{{ url('/cart') }}" class="nav-link text-black">

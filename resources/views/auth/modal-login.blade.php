@@ -23,6 +23,11 @@
                 <div class="form-title text-center mt-2">
                     <h4>Account login</h4>
                 </div>
+                @if(session('error'))
+                                <div class="alert alert-danger">
+                                {{ session('error') }}
+                                </div>
+                            @endif
                 <div class="d-flex flex-column text-center">
                     <form action="{{ route('login') }}" method="POST">
                         @csrf
@@ -36,6 +41,8 @@
                                 <strong>{{ $message }}</strong>
                             </span>
                             @enderror
+
+
                         </div>
 
                         {{-- Password --}}
@@ -47,19 +54,29 @@
                                 <strong>{{ $message }}</strong>
                             </span>
                             @enderror
+
+
+
+
                         </div>
                         <button type="submit" class="btn btn-block btn-round btn-danger">Sign In</button>
                     </form>
 
                     <div class="text-left mt-2"><a href="{{ url('/password/reset') }}" id="forgotPassword" class="text-info">Forgot Password</a></div>
-                    <div class="text-center text-muted delimiter">or use a social network</div>
+                    <div class="text-center text-muted delimiter">or use a social netwaork</div>
                     <div class="d-flex justify-content-center social-buttons">
-                        <button type="button" class="btn btn-secondary btn-round" data-toggle="tooltip" data-placement="top" title="Google">
-                            <i class="fab fa-google"></i>
-                        </button>
-                        <button type="button" class="btn btn-secondary btn-round" data-toggle="tooltip" data-placement="top" title="Facebook">
+                        <a type="button" href="/auth/google/redirect" class="btn btn-secondary btn-round" data-toggle="tooltip" data-placement="top" title="Google">
+
+                                <i class="fab fa-google"></i>
+
+                        </a>
+                        <a type="button" href="/auth/github/redirect" class="btn btn-secondary btn-round" data-toggle="tooltip" data-placement="top" title="Github">
+                            <i class="fab fa-github"></i>
+                        </a>
+
+                        <a type="button" href="/auth/facebook/redirect" class="btn btn-secondary btn-round" data-toggle="tooltip" data-placement="top" title="Facebook">
                             <i class="fab fa-facebook"></i>
-                        </button>
+                        </a>
                     </div>
                 </div>
             </div>

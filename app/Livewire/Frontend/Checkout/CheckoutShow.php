@@ -8,6 +8,8 @@ use Livewire\Component;
 use App\Models\Orderitem;
 use Illuminate\Support\Str;
 use Livewire\Attributes\On;
+use App\Models\PayPalConfig;
+use Illuminate\Support\Facades\Auth;
 
 
 class CheckoutShow extends Component
@@ -147,6 +149,7 @@ class CheckoutShow extends Component
 // }
 
 {
+    public $clientID; // Define a public variable to hold the client ID
     public $carts;
     public $totalProductAmount = 0;
 
@@ -171,6 +174,9 @@ class CheckoutShow extends Component
     public function mount()
     {
         $this->fetchCartData();
+        $user = Auth::user();
+        $config_paypal = PayPalConfig::where('user_id', $user->id)->first();
+        $this->clientID = $config_paypal ? $config_paypal->client_id : null; // Assign the client ID to the variable
     }
 
     public function fetchCartData()
@@ -339,6 +345,7 @@ class CheckoutShow extends Component
     $this->fetchCartData(); // Fetch cart items
 
     return view('livewire.frontend.checkout.checkout-show', [
+        'clientID' => $this->clientID,
         'totalProductAmount' => $this->totalProductAmount,
         'cart' => $this->carts // Pass cart items to the view
     ]);

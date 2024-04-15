@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+
 use App\Models\Product;
 use App\Models\UserDetail;
 use Laravel\Sanctum\HasApiTokens;
@@ -27,6 +27,9 @@ class User extends Authenticatable implements MustVerifyEmail
         'password',
         'role_as',
         'seller',
+        'provider',
+        'provider_id',
+        'provider_token'
     ];
 
     public function userDetail()

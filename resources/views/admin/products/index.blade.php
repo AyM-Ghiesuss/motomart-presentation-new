@@ -10,9 +10,9 @@
         @endif
         <div class="card">
             <div class="card-header">
-                <h4>Products
+                {{-- <h4>Products
                     <a href="{{ url('admin/products/create')}}" class="btn btn-primary text-white float-end">Add products</a>
-                </h4>
+                </h4> --}}
             </div>
             <div class="card-body">
                 <table class="table table-bordered table-stripped">
@@ -25,7 +25,7 @@
                             <th>Price</th>
                             <th>Quantity</th>
                             <th>Status</th>
-                            <th>Action</th>
+                            {{-- <th>Action</th> --}}
                         </tr>
                     </thead>
                     <tbody>
@@ -44,10 +44,10 @@
                             <td>{{ $product->selling_price }}</td>
                             <td>{{ $product->quantity }}</td>
                             <td>{{ $product->status == '1' ? 'hidden':'Visible' }}</td>
-                            <td>
+                            {{-- <td>
                                 <a href="{{ url('admin/products/'.$product->id.'/edit') }}" class="btn btn-success">Edit</a>
                                 <a href="{{ url('admin/products/'.$product->id.'/delete') }}" onclick="return confirm('Are you sure, you want to delete this data?')" class="btn btn-danger">Delete</a>
-                            </td>
+                            </td> --}}
                         </tr>
                         @empty
                         <tr>
